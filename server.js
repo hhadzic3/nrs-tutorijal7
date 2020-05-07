@@ -37,4 +37,4 @@ app.put('/gradovi/:id' , function(req, res)  {
     ).then( () => { res.json({ status : 'Updated!'}) });
 });
 
-app.listen('8080' , () => {console.log('Listening port 8080...')});
+module.exports = app.listen('8080' , () => {console.log('Listening port 8080...')});
