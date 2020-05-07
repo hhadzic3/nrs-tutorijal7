@@ -1,5 +1,12 @@
 var express = require('express');
+const db = require('./db/db');
+const bodyParser = require('body-parser');
+
 var app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
 app.use(express.static('.'));
 
 app.get('/', function (req, res) {
@@ -20,7 +27,7 @@ app.post('/grad' , function(req, res)  {
     .then( data => { res.send(data) }).catch( function (err) {res.sendStatus(500)});
 });
 
-app.put('/grad/:id' , function(req, res)  {
+app.put('/gradovi/:id' , function(req, res)  {
     if ( !req.body )
         res.json({ error: 'Bad Data' })
     var v = req.body;
