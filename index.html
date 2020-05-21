@@ -1,28 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Turorijal7-NRS</title>
-    <style>
-        ul{
-            text-align: center;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-        ul li{
-            list-style: none;
-        }
-    </style>
+<title>Frontend</title>
+<script>
+window.onload = function () {
+     fetch('/gradovi', { method: 'get'}).then((response) => {
+         const json = response.json();
+         if (response.ok) {
+             return json;
+         }
+         return Promise.reject(new Error('Something went wrong.'));
+     })
+     .then((response) => {
+         document.getElementById('version').innerHTML = JSON.stringify(response);
+     }).catch((error) => {
+         document.getElementById('error').innerHTML = error && error.message || 'Something else went wrong.';
+     });
+};
+</script>
 </head>
 <body>
-    <ul >
-        <h1>Lista gradova:</h1>
-        <li>Sarajevo</li>
-        <li>Zenica</li>
-        <li>Tuzla</li>
-        <li>Zagreb</li>
-        <li>Graz</li>
-        <li>Bihac</li>
-    </ul>
+<h1>Gradovi:</h1>
+<p id="version"></p>
+<p id="error"></p>
 </body>
 </html>
